@@ -20,10 +20,16 @@ require "sinatra/reloader" if development?
 
 require 'erb'
 
+require 'bcrypt'
+
 # Some helper constants for path-centric logic
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
 
 APP_NAME = APP_ROOT.basename.to_s
+
+# Root needs to be set after sinatra is required
+set :root, APP_ROOT
+
 
 # Set up the controllers and helpers
 Dir[APP_ROOT.join('app', 'controllers', '*.rb')].each { |file| require file }
@@ -31,3 +37,9 @@ Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
 
 # Set up the database and models
 require APP_ROOT.join('config', 'database')
+
+# Set up carrier wave and include all files in new 'lib' folder for photo uploader
+require 'carrierwave'
+require 'carrierwave/orm/activerecord'
+require 'mini_magick'
+Dir[APP_ROOT.join('lib', '*.rb')].each { |file| require file }

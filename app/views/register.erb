@@ -1,0 +1,84 @@
+<div class="container">
+  
+<h2>Register:</h2>
+
+<form action="/register" method="post">
+  <label for="user[name]">Name:</label>
+  <input type="text" name="user[name]" id="name">
+  <label for="user[email]">Email:</label>
+  <input type="text" name="user[email]" id="email">
+  <label for="user[password]">Password:</label>
+  <input type="password" name="user[password]" id="pass">
+  <input type="submit" value="Register!" id="submit">
+</form>
+  <ul id="errors"></ul>
+</div>
+
+<script>
+
+  var messages = function(){
+
+    // Remove old error list
+    $('#errors').children("li").remove();
+
+    var basicErrors = 0
+    // Check name validity
+    if (!$('#name').val().match(/./)){
+      $('#errors').append("<li>Must enter a name</li>");
+      basicErrors ++;
+    } else {
+      $('#name').css('border','3px solid green');
+    }    
+
+    // Check email validity
+    if (!$('#email').val().match(/[\w-+]+@[\w-]+\.[.\w{2,}]+/)){
+      $('#errors').append("<li>Invalid email</li>");
+      basicErrors ++;
+    } else {
+      $('#email').css('border','3px solid green');
+    }
+
+    // Check a password
+    if (!$('#pass').val().match(/./)){
+      $('#errors').append("<li>Add a password</li>");
+      basicErrors ++;
+    } else {
+      $('#pass').css('border','3px solid orange');
+    }
+
+    // Check for password errors
+    var passwordErrors = 0
+    if (!$('#pass').val().match(/\d/)){
+      $('#errors').append("<li>Use some numbers for a stronger password</li>");
+      passwordErrors ++;
+    }
+    if (!$('#pass').val().match(/[A-Z]/)){
+      $('#errors').append("<li>Add CAPS to make password stronger</li>");
+      passwordErrors ++;
+    }
+    if (!$('#pass').val().match(/.{8,}/)){
+      $('#errors').append("<li>Longer passwords are stronger</li>");
+      passwordErrors ++;
+    }
+
+    if (passwordErrors == 0) {
+      $('#pass').css('border','3px solid green');
+    }
+
+    // Show disable button if any errors
+    if(basicErrors==0){
+      $('#submit').removeAttr('disabled');
+    } else {
+      $('#submit').attr('disabled','disabled');
+    }
+
+  }
+
+  // Check errors on first load, and after every keyup
+  $(document).ready(function() {
+    messages();
+    $(document).on('keyup',messages);
+  });
+
+
+</script>
