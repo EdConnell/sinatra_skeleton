@@ -1,1 +1,7 @@
-User.create!(name: 'pat',email: 'pat@pat.com', password: 'pat')
+require 'faker'
+
+User.create({
+              name: "Ted",
+              email: "mrawesome@sauce.com",
+              password: "password"
+            })

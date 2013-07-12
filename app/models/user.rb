@@ -1,14 +1,14 @@
 class User < ActiveRecord::Base
 
   # Inlclude following line if using Carrierwave
-  has_many :images
+  has_many :user_files
 
   include BCrypt
 
   validates :name, :presence => true
   validates :email, :presence => true, :uniqueness => true
   validates :password_hash, :presence => true
-  validates_format_of :email , :with => /\A\S+@[a-zA-Z0-9\-]+(\.[a-z]{2,})+\z/
+  validates_format_of :email, :with => /\A\S+@[a-zA-Z0-9\-]+(\.[a-z]{2,})+\z/
 
   def self.authenticate(args)
     args[:password] = BCrypt::Password.create(args[:password])

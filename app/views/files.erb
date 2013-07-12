@@ -1,0 +1,14 @@
+<div class="container">
+  <form action="/files" method="post" enctype="multipart/form-data" >
+    <input type="hidden" name="userfile[user_id]" value="<%= @user.id %>">
+    <input type="text" name="userfile[title]" placeholder="Filename">
+    <input type="file" name="userfile[file]">
+    <input type="submit">
+
+  </form>
+  <% if @user.user_files.any? %>
+  <% @user.user_files.each do |file| %>
+    <p><img src="<%= file.file %>"></p>
+  <% end %>
+<% end %>
+</div>

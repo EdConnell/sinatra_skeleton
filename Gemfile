@@ -27,3 +27,7 @@ end
 # CarrierWave and Mini Magick for image uploads
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'urban'
+gem 'mechanize'
+gem 'google-search'
+gem 'debugger'

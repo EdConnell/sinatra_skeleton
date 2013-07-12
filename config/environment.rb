@@ -21,7 +21,11 @@ require "sinatra/reloader" if development?
 require 'erb'
 
 require 'bcrypt'
-
+require 'urban'
+require 'open-uri'
+require 'mechanize'
+require 'google-search'
+require 'debugger'
 # Some helper constants for path-centric logic
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
 
@@ -42,4 +46,5 @@ require APP_ROOT.join('config', 'database')
 require 'carrierwave'
 require 'carrierwave/orm/activerecord'
 require 'mini_magick'
+
 Dir[APP_ROOT.join('lib', '*.rb')].each { |file| require file }

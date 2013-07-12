@@ -15,16 +15,16 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/js/application.js"></script>
 
-  <title></title>
+  <title>Sonic Garage File Storage</title>
 </head>
 <body>
   <nav>
     <div id="logo">
-      <a href="/">Logo</a>
+      <a href="/">Sonic Garage File Storage</a>
     </div>
     <div id="userbox">
       <% if session[:user_id] %>
-        Welcome <%= User.find(session[:user_id]).name %> <a href="/logout" >Logout</a>
+        Welcome <%= User.find(session[:user_id]).name %> | <a href="/logout" >Logout</a>
       <% else %>
         <a href="/login" >Login</a> | <a href="/register" >Register</a>
       <% end %>
